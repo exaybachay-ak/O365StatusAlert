@@ -4,7 +4,7 @@ add-type -name win -member $t -namespace native
 
 while($true){
 	$webrequest = (Invoke-WebRequest -URI "https://status.office.com" -UseBasicParsing -TimeoutSec 60)
-	if($webrequest.RawContent -NotMatch "no known issues"){
+	if($webrequest.RawContent -Match "Title:"){
 		$wshell = New-Object -ComObject Wscript.Shell
 		$wshell.Popup("Issues detected! Check status.office.com!!!",0,"Done",0x1)
 	}
